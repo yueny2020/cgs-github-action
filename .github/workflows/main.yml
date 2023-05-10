@@ -32,7 +32,7 @@ jobs:
           docker image tag 324798398040.dkr.ecr.us-west-2.amazonaws.com/codegurusecurity-actions codeguru:latest
 
       - name: Test using local action
-        uses: yueny2020/cgs-github-action-yml@action.yml
+        uses: yueny2020/cgs-github-action-yml@blob/main/action.yml
         with:
           source_path: .
           aws_region: us-east-1
