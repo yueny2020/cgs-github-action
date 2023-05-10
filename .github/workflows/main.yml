@@ -1,19 +1,6 @@
 name: Test
 on:
   workflow_dispatch:
-    inputs:
-      logLevel:
-        default: 'debug'
-      tags:
-        description: 'Run CodeGuru Security'
-        
-permissions:
-  id-token: write
-  # for writing security events.
-  security-events: write
-  # only required for workflows in private repositories
-  actions: read
-  contents: read
 
 jobs:
   build:
