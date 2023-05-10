@@ -29,31 +29,17 @@ jobs:
         run: |
           docker pull 324798398040.dkr.ecr.us-west-2.amazonaws.com/codegurusecurity-actions
           docker image tag 324798398040.dkr.ecr.us-west-2.amazonaws.com/codegurusecurity-actions codeguru:latest
-          
+  
+  container-test-job:
+    runs-on: codegurusecurity-actions
+    container: 
+      image: codeguru:latest
+      options: --source_path . --aws_region us-east-1 --output_file codeguru-security-results
+    steps:
       - name: 'AWS CodeGuru Security Action'
-        description: 'AWS CodeGuru Security Action'
-        branding:
-          icon: 'cloud'
-          color: 'orange'
-        inputs:
-          source_path:
-            description: 'Path to source repository'
-            default: .
-            required: false
-          aws_region:
-            default: us-east-1
-            description: 'AWS region where you want to run workflow'
-            required: false
-        runs:
-          using: docker
-          image: docker://codeguru:latest
-          args:
-           - --source_path
-           - ${{ inputs.source_path }}
-           - --aws_region
-           - ${{ inputs.aws_region }}
-           - --output_file
-           - codeguru-security-results
+        run: |
+          docker docker://codeguru:latest
+          
           
       - name: print findings.
         run: |
