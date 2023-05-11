@@ -51,3 +51,4 @@ jobs:
         run: |
           ls -l
           cat codeguru-security-results.sarif.json
+          cat codeguru_security.log
