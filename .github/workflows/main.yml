@@ -23,29 +23,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-        
-      - name: ECR Login
-        id: login-to-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-        with:
-          registries: '324798398040'
-          aws-region: us-west-2
-
-      - name: Docker Pull
-        run: |
-          docker pull 324798398040.dkr.ecr.us-west-2.amazonaws.com/codegurusecurity-actions
-          docker image tag 324798398040.dkr.ecr.us-west-2.amazonaws.com/codegurusecurity-actions codeguru:latest
-
-      - name: Get action.yml File
-        uses: actions/checkout@v3
-        with:
-          repository: yueny2020/cgs-github-action-yml
-          path: ./action.yml
-      - name: Test using local action
-        uses: ./action.yml
+          
+      - name: CodeGuru Reviewer
+        uses: aws-actions/codeguru-security@v1.0
         with:
           source_path: .
-          aws_region: us-east-1
+          aws_region: eu-north-1          
 
       - name: print findings.
         run: |
