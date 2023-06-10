@@ -21,6 +21,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::105948277080:role/CodeGuruSecurityGitHubAccessRole
           role-session-name: GitHubActionScript
+          aws-region: eu-north-1
           
       - name: CodeGuru Reviewer
         uses: aws-actions/codeguru-security@1.1
