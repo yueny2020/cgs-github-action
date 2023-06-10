@@ -1,4 +1,4 @@
-name: Test
+name: CodeGuru Security Example
 on:
   workflow_dispatch:
     inputs:
@@ -29,13 +29,13 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::105948277080:role/CodeGuruSecurityGitHubAccessRole
           role-session-name: GitHubActionScript
-          aws-region: eu-north-1
+          aws-region: us-east-1
           
       - name: CodeGuru Security
         uses: aws-actions/codeguru-security@1.1
         with:
           source_path: .
-          aws_region: eu-north-1
+          aws_region: us-east-1
       - name: print findings.
         run: |
           ls -l
