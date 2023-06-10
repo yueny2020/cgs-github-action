@@ -27,7 +27,7 @@ jobs:
           role-session-name: GitHubActionScript
           aws-region: eu-north-1
           
-      - name: CodeGuru Reviewer
+      - name: CodeGuru Security
         uses: aws-actions/codeguru-security@1.1
         with:
           source_path: .
