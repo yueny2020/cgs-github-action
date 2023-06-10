@@ -33,8 +33,15 @@ jobs:
           source_path: .
           aws_region: eu-north-1
           fail_on_severity: Critical
-
       - name: print findings.
         run: |
           ls -l
           cat codeguru-security-results.sarif.json
+          
+      # If you want content in security scanning, you’ll need to enable codescanning by going into github.
+      # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning-for-a-repository
+      # and replace workflow.yml file with below content.
+      - name: Upload review result
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: codeguru-security-results.sarif.json
