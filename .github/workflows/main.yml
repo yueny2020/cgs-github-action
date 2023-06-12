@@ -39,5 +39,13 @@ jobs:
           echo ${{ github.repository }}
           echo ${{ github.event.repository.name }}
           
-          
-     
+      - name: Get action.yml File
+        uses: actions/checkout@v3
+        with:
+          repository: yueny2020/cgs-github-action-yml
+          path: ./action.yml
+      - name: Test using local action
+        uses: ./action.yml
+        with:
+          source_path: .
+          aws_region: us-east-1
