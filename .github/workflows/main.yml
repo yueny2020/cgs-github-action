@@ -34,18 +34,21 @@ jobs:
           role-session-name: GitHubActionScript
           aws-region: us-east-1
           
-      - name: Get repo name
-        run: |
-          echo ${{ github.repository }}
-          echo ${{ github.event.repository.name }}
-          
-      - name: Get action.yml File
-        uses: actions/checkout@v3
-        with:
-          repository: yueny2020/cgs-github-action-yml
-          path: ./action.yml
-      - name: Test using local action
-        uses: ./action.yml
+      - name: CodeGuru Security
+        uses: aws-actions/codeguru-security@1.1
         with:
           source_path: .
           aws_region: us-east-1
+          fail_on_severity: Critical # Critical findings will fail the build
+      - name: print findings.
+        run: |
+          ls -l
+          cat codeguru-security-results.sarif.json
+                    
+      # If you want content in security scanning, you’ll need to enable codescanning by going into github.
+      # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning-for-a-repository
+      - name: Upload review result
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: codeguru-security-results.sarif.json
+
