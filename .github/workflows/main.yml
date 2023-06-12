@@ -37,6 +37,7 @@ jobs:
       - name: Get repo name
         run: |
           echo ${{ github.repository }}
+          echo ${{ github.event.repository.name }}
           
           
      
