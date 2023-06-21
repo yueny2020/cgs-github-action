@@ -39,6 +39,7 @@ jobs:
         with:
           source_path: .
           aws_region: us-east-1
+          analysis_type: All
           fail_on_severity: Critical # Critical findings will fail the build
       - name: print findings.
         run: |
