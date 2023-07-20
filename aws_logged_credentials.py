@@ -11,8 +11,6 @@ def log_credentials_noncompliant():
     access_key = credentials.access_key
     secret_key = credentials.secret_key
     # Noncompliant: credentials are written to the logger.
-    logging.info('Access key: ', access_key)
-    logging.info('secret access key: ', secret_key)
 # {/fact}
 
 
